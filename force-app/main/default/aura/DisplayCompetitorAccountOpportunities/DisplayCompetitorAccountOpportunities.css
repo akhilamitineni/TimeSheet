@@ -1,0 +1,6 @@
+.THIS .slds-media {
+    padding-top: 0.5rem;
+    padding-left: 1rem;
+    display: flex;
+    align-items: flex-start;  
+}

@@ -1,0 +1,24 @@
+<aura:component controller="ApprovalDetailController" implements="flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,lightning:availableForFlowScreens,force:lightningQuickAction">
+    <aura:attribute name="data" type="Approval_Detail__c"/>
+    <aura:attribute name="draftValues" type="Approval_Detail__c" default="[]"/>
+    <aura:attribute name="myColumns" type="List"/>
+    <aura:attribute name="errors" type="Approval_Detail__c" default="[]"/>
+    <aura:attribute name="recordId" type="String" />
+    <aura:handler name = "init" value = "{!this}" action = "{!c.doInIt}"/>
+    
+    <div style="height:400px;">
+        <c:customDataTable class ="dTable" aura:id="dataTable"
+                           data="{! v.data }"
+                           columns="{! v.myColumns }"
+                           keyField="Id"
+                           errors="{! v.errors }"
+                           onsave="{! c.handleSave }"
+                           draftValues="{! v.draftValues }"
+                           hideCheckboxColumn="true"
+                           suppressBottomBar="false"
+                           oncellchange="{! c.handleCellChange}"
+                           onvaluechange="{! c.handleValueChange}"
+                           oncancel="{! c.handleCancel}"
+                           />
+    </div>
+</aura:component>

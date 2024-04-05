@@ -1,0 +1,75 @@
+<template>
+    <lightning-record-edit-form object-api-name="dbt__Skill_Resource__c">
+        <table class="slds-table slds-table_bordered slds-no-row-hover slds-table_cell-buffer" role="grid">
+            <thead>
+                <tr>
+                    <th scope="col" height="22" style="width: 3rem">Nr.</th>
+                    <th scope="col" height="22">Resource</th>
+                    <th scope="col" height="22">Skill</th>
+                    <th scope="col" height="22">Start Date</th>
+                    <th scope="col" height="22">End Date</th>
+                    <th scope="col" height="22">Release/Version</th>
+                    <th scope="col" height="22">Experience</th>
+                    <th scope="col" height="22">Level of Experience</th>
+                    <th scope="col" height="22" style="width: 3rem"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <template for:each={skillResources} for:item="rec">
+                    <tr key={rec} class="slds-hint-parent">
+                        <td class="index">
+                            <lightning-formatted-number value={rec.index}></lightning-formatted-number>
+                        </td>
+                        <td>
+                            <lightning-input-field variant="label-hidden" name="dbt__Resource__c" field-name="dbt__Resource__c" data-id={rec.index} data-record-id={rec.Id} onchange={handleChange} value={rec.dbt__Resource__c}></lightning-input-field>
+                        </td>
+                        <td>
+                            <lightning-input-field variant="label-hidden" name="dbt__Skill__c" field-name="dbt__Skill__c" data-id={rec.index} data-record-id={rec.Id} onchange={handleChange} value={rec.dbt__Skill__c}></lightning-input-field>
+                            <template if:true={rec.skillValidation}>
+                                <div class="helper-text">{rec.skillMessage}</div>
+                            </template>
+                        </td>
+                        <td>
+                            <lightning-input-field variant="label-hidden" name="dbt__Start_date__c" field-name="dbt__Start_date__c" data-id={rec.index} data-record-id={rec.Id} onchange={handleChange} value={rec.dbt__Start_date__c} disabled={rec.startdateVisibility}></lightning-input-field>
+                            <template if:true={rec.startDateValidation}>
+                                <div class="helper-text">{rec.startDateMessage}</div>
+                            </template>
+                        </td>
+                        <td>
+                            <lightning-input-field variant="label-hidden" name="dbt__End_date__c" field-name="dbt__End_date__c" data-id={rec.index} data-record-id={rec.Id} onchange={handleChange} value={rec.dbt__End_date__c} disabled={rec.enddateVisibility}></lightning-input-field>
+                            <template if:true={rec.endDateValidation}>
+                                <div class="helper-text">{rec.endDateMessage}</div>
+                            </template>
+                        </td>
+                        <td>
+                            <lightning-input-field variant="label-hidden" name="dbt__Version_Release__c" field-name="dbt__Version_Release__c" data-id={rec.index} data-record-id={rec.Id} onchange={handleChange} value={rec.dbt__Version_Release__c}></lightning-input-field>
+                        </td>
+                        <td>
+                            <lightning-input-field class={rec.isText} variant="label-hidden" name="dbt__Experience__c" field-name="dbt__Experience__c" data-id={rec.index} data-record-id={rec.Id} onchange={handleChange} value={rec.dbt__Experience__c}></lightning-input-field>
+                            <lightning-input-field class={rec.isFormula} variant="label-hidden" name="dbt__Experience_Formula__c" field-name="dbt__Experience_Formula__c" data-id={rec.index} data-record-id={rec.Id} onchange={handleChange} value={rec.dbt__Experience_Formula__c}></lightning-input-field>
+                            <template if:true={rec.experienceValidation}>
+                                <div class="helper-text">{rec.experienceMessage}</div>
+                            </template>
+                        </td>
+                        <td>
+                            <lightning-input-field variant="label-hidden" name="dbt__Level_of_Experience__c" field-name="dbt__Level_of_Experience__c" data-id={rec.index} data-record-id={rec.Id} onchange={handleChange} value={rec.dbt__Level_of_Experience__c}></lightning-input-field>
+                            <template if:true={rec.levelOfExperienceValidation}>
+                                <div class="helper-text">{rec.levelofExperianceMessage}</div>
+                            </template>
+                        </td>
+                        <td>
+                            <lightning-button-icon icon-name="utility:delete" alternative-text="Remove" title="Remove" data-id={rec.index} data-record-id={rec.Id} onclick={removeRow}></lightning-button-icon>
+                        </td>
+                    </tr>
+                </template>
+            </tbody>
+        </table>
+        <div class="slds-p-left_small slds-p-vertical_small">
+            <lightning-button variant="neutral" label="Add" title="Add" icon-name="utility:add" onclick={addNewRow}></lightning-button>
+        </div>
+        <footer class="slds-modal__footer" style="padding: 0.50rem 1rem;">
+            <lightning-button icon-name="utility:save" variant="brand" label="Save" title="Create" onclick={createSkillResources}></lightning-button>
+            <lightning-button  variant="Brand Outline" label="Cancel" title="Cancel" onclick={handleCancel}></lightning-button>
+        </footer>
+    </lightning-record-edit-form>
+</template>

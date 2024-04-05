@@ -1,0 +1,47 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId"
+                			controller="ApprovalProcessApproversController"
+                  access="global" >
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <aura:attribute name="recordId" type="String" />     
+    <aura:attribute name="opportunityApproversHistory" type="ProcessInstanceHistory[]"/>
+    
+    <div class="banner">  
+        <table class="slds-table slds-table--bordered slds-table--cell-buffer">
+            <thead>
+                <tr class="slds-text-title">
+                    <th scope="col">
+                        <div class="slds-truncate" title="Approver">Approver</div>
+                    </th>
+                    <th scope="col">
+                        <div class="slds-truncate" title="Created Date">Date</div>
+                    </th>
+                    <th scope="col">
+                        <div class="slds-truncate" title="Status">Status</div>
+                    </th>  
+                    <th scope="col">
+                        <div class="slds-truncate" title="Original Approver">Original Approver</div>
+                    </th>                    
+                </tr>
+            </thead>            
+        	<tbody>
+                <aura:iteration var="history" items="{!v.opportunityApproversHistory}" indexVar="idx">
+                    <tr>
+                        <td data-label="Approver">
+                        	<span>{!history.Actor.Name}</span>
+                        </td>
+                        <td data-label="Cretaed Date">
+                            <ui:outputDateTime value="{!history.CreatedDate}"/>
+                        </td>
+                        <td data-label="Status">
+                        	<span>{!history.StepStatus}</span>
+                        </td>
+                        <td data-label="Original Approver">
+                        	<span>{!history.OriginalActor.Name}</span>
+                        </td>                        
+                    </tr>
+                </aura:iteration>
+            </tbody>
+        </table>
+	</div>
+
+</aura:component>

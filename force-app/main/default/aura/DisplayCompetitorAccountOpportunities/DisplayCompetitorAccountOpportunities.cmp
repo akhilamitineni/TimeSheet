@@ -1,0 +1,52 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId"
+    controller="CompetitorAccountOpportunitiesController" access="global">
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:attribute name="cbaseURL" type="String"/>
+    <aura:attribute name="recordId" type="String" />
+    <aura:attribute name="CompetitorAccountOpportunities" type="Opportunity[]"/>
+    <lightning:card variant="Narrow" class="slds-box slds-box_x-small slds-theme_shade" title="Opportunities" iconName="standard:opportunity"/> 
+    <table class="slds-table slds-table_cell-buffer slds-table_bordered" aria-labelledby="element-with-table-label other-element-with-table-label">
+            <thead>
+                <tr class="slds-line-height_reset">
+                    <th class="" scope="col">
+                        <div class="slds-truncate" title="Opportunity Name">Opportunity Name</div>
+                        </th>
+                    <th class="" scope="col">
+                        <div class="slds-truncate" title="Account Name">Account Name</div>
+                    </th>
+                    <th class="" scope="col">
+                        <div class="slds-truncate" title="Amount">Amount</div>
+                    </th>
+                    <th class="" scope="col">
+                        <div class="slds-truncate" title="Stage">Stage</div>
+                    </th>
+                    <th class="" scope="col">
+                        <div class="slds-truncate" title="Close Date">Close Date</div>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <aura:iteration var="opportunity" items="{!v.CompetitorAccountOpportunities}" indexVar="indx">
+                    <tr class="slds-hint-parent">
+                        <th data-label="Opportunity Name" scope="row">
+                            <div class="slds-truncate" title="{!opportunity.Name}">
+                                <a href ="{!cbaseURL+'/lightning/r/Opportunity/'+opportunity.Id+'/view'}">{!opportunity.Name}</a>
+                            </div>
+                        </th>
+                        <td data-label="Account Name">
+                            <div class="slds-truncate" title="{!opportunity.Account.Name}">{!opportunity.Account.Name}</div>
+                        </td>
+                        <td data-label="Total Proposal Value($K)">
+                            <div class="slds-truncate" title="{!opportunity.Amount}"><lightning:formattedNumber value="{!opportunity.Amount}" style="currency" currencyCode="USD"/></div>
+                        </td>
+                        <td data-label="Stage">
+                            <div class="slds-truncate" title="{!opportunity.StageName}">{!opportunity.StageName}</div>
+                        </td>
+                        <td data-label="Close Date">
+                            <div class="slds-truncate" title="{!opportunity.CloseDate}"><lightning:formattedDateTime value="{!opportunity.CloseDate}" month="numeric" year="numeric" day="numeric" /></div>
+                        </td>
+                    </tr>
+                </aura:iteration>
+            </tbody>
+        </table>
+</aura:component>

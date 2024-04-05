@@ -1,0 +1,54 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId"
+controller="ProcessInstanceController" access="global">
+<aura:attribute name="cbaseURL" type="String"/>
+<aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+<aura:attribute name="opportunityReport" type="ProcessInstanceItems[]"/>
+    
+<div class = "tableDiv slds-card slds-scrollable">
+    
+        <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_col-bordered" aria-label="Example table of Opportunities with vertical borders">
+            <thead>
+                <tr class="slds-line-height_reset">
+                    <th class="" scope="col">
+                        <div class="slds-truncate" title="Opportunity Name">Opportunity Name</div>
+                    </th>
+                    <th class="" scope="col">
+                        <div class="slds-truncate" title="Stage">Stage</div>
+                    </th>
+                    <th class="" scope="col">
+                        <div class="slds-truncate" title="Approval Process Name">Approval Process : Name</div>
+                    </th>
+                    <th class="" scope="col">
+                        <div class="slds-truncate" title="Step Name">Step : Name</div>
+                    </th>
+                    <th class="" scope="col">
+                        <div class="slds-truncate" title="Approver Name">Approver Name</div>
+                    </th>
+                </tr>
+            </thead>
+                <tbody>
+                    <aura:iteration var="item" items="{!v.opportunityReport}" indexVar="indx">
+                        <tr class="slds-hint-parent">
+                        <th data-label="Opportunity Name" scope="row">
+                            <div class="slds-truncate" title="{!item.opportunityName}">
+                                <a href ="{!cbaseURL+'/lightning/r/Opportunity/'+item.opportunityId+'/view'}">{!item.opportunityName}</a>
+                            </div>
+                        </th>
+                        <td data-label="Stage">
+                            <div class="slds-truncate" title="{!item.opportunityStage}">{!item.opportunityStage}</div>
+                        </td>
+                        <td data-label="Approval Process Name">
+                            <div class="slds-truncate" title="{!item.approvalProcessName}">{!item.approvalProcessName}</div>
+                        </td>
+                        <td data-label="Step Name">
+                            <div class="slds-truncate" title="{!item.stepName}">{!item.stepName}</div>
+                        </td>
+                        <td data-label="Approver Name">
+                            <div class="slds-truncate" title="{!item.approverName}">{!item.approverName}</div>
+                        </td>
+                        </tr>
+                    </aura:iteration>
+                </tbody>
+        </table>    
+</div>
+</aura:component>

@@ -1,0 +1,14 @@
+<template>
+    <lightning-card title="Submitted Resources">
+        <template if:true={submittalData}>
+            <lightning-datatable 
+                key-field="Id"
+                data={submittalData}
+                columns={columns}
+                hide-checkbox-column="true"
+                default-sort-direction={defaultSortDirection}
+                sorted-direction={sortDirection}>
+            </lightning-datatable>
+        </template>
+    </lightning-card>
+</template>

@@ -1,0 +1,16 @@
+<template>
+    <lightning-card title="Contacts for an Account">
+        <div class="slds-p-around_medium">
+            <lightning-input type="text" label="Account ID" value={accountId} onchange={handleAccountChange}></lightning-input>
+            <lightning-button variant="brand" label="Submit" onclick={handleSubmit}></lightning-button>
+        </div>
+        <template if:true={hasData}>
+            <lightning-datatable
+            key-field="Id"
+            data={listOfContact}
+            columns={columns}
+            hide-checkbox-column>
+            </lightning-datatable>
+        </template>
+    </lightning-card>
+</template>

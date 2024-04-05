@@ -1,0 +1,99 @@
+<aura:component implements="flexipage:availableForAllPageTypes,force:hasRecordId,force:appHostable" controller="ContactController" access="global">
+<aura:attribute name="contacts" type="Contact[]"/>
+<aura:attribute name="newContact" type="Contact"
+      default="{ 'sobjectType': 'Contact',
+                    'FirstName': '',
+                    'LastName': '',
+                    'Phone': null,
+                    'Email': null,
+					'Title': ''}"/>
+<aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+
+<div class="slds-page-header slds-page-header_object-home">
+    <lightning:layout>
+        <lightning:layoutItem>
+         <lightning:icon iconName="standard:avatar" />
+        </lightning:layoutItem>
+        <lightning:layoutItem class="slds-m-left_medium">
+            <h1 class="slds-page-header__title slds-p-right_x-small">Add Contact</h1>
+        </lightning:layoutItem>
+    </lightning:layout>
+</div>
+
+   <fieldset class="slds-box slds-theme_default slds-container_x-large">
+	<form class="slds-form_stacked">
+        <div class="slds-grid slds-wrap">
+        <div class="slds-col slds-size_1-of-2">
+            <span>
+        <lightning:input aura:id="contactform" label =" First Name "
+                         name="contactfirstname"
+                         value="{!v.newContact.FirstName}"
+                         required="true"/>
+                </span>
+            </div>
+            <div class="slds-col slds-size_1-of-2">
+                <span>
+        <lightning:input aura:id="contactform" label =" Last Name "
+                         name="contactlastname"
+                         value="{!v.newContact.LastName}"
+                         required="true"/>
+                    </span>
+                </div>
+            <div class="slds-col slds-size_1-of-2">
+                <span>
+        <lightning:input type="phone" aura:id="contactform" label="Phone"
+                         name="contactphone"
+                         value="{!v.newContact.Phone}"/>
+                     </span>
+                 </div>
+            <div class="slds-col slds-size_1-of-2">
+                 <span>
+        <lightning:input aura:id="contactform" label="Email"
+                         name="contactemail"
+                         value="{!v.newContact.Email}"/>
+                      </span>
+                </div>
+            <div class="slds-col slds-size_1-of-2">
+                 <span>
+        <lightning:input aura:id="contactform" label =" Title "
+                         name="contactlastname"
+                         value="{!v.newContact.Title}"/>
+                     </span>
+                 </div>
+            <div class="slds-col slds-align-middle">
+                <span>
+        <lightning:button label="Save Contact"
+                          class="slds-m-top_medium"
+                          variant="brand"
+                          onclick="{!c.clickSave}"/>
+                     </span>
+                 </div>
+            </div>
+    </form>
+   </fieldset>
+ <fieldset class="slds-box slds-theme_default slds-container_x-large">
+      <h1 class="slds-page-header">Contact List</h1>
+                
+<lightning:layout>
+       <span>
+  
+       <p>
+    <lightning:layoutItem padding="around-small" >
+        <aura:iteration var="contact" items="{!v.contacts}">
+            <div class="column">
+            
+            <c:Contacts contact="{!contact}"/>
+                 </div>
+                 
+        </aura:iteration>
+         
+    </lightning:layoutItem>
+           </p>
+            </span>
+         
+</lightning:layout>
+                   
+               
+     </fieldset>
+
+</aura:component>

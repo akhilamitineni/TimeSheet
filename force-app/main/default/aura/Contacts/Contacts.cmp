@@ -1,0 +1,17 @@
+<aura:component>
+    
+<aura:attribute name="contact" type="Contact" />
+    
+    <div>
+ <lightning:card title ="{!v.contact.Name}">
+
+     <p class="slds-p-horizontal_medium">Title :  {!v.contact.Title}</p>
+
+     <p class="slds-p-horizontal_medium">Phone :  {!v.contact.Phone}</p>
+
+    <p class="slds-p-horizontal_medium">Email :  {!v.contact.Email}</p>
+     
+</lightning:card>
+        </div>
+        
+</aura:component>

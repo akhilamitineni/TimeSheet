@@ -1,0 +1,22 @@
+table,
+
+td {
+  vertical-align: bottom;
+  /*height: auto;*/
+  /* padding: 14px; */
+}
+
+/* div{
+  padding: 0px;
+} */
+
+.index {
+  padding: 14px;
+}
+
+/* Add this CSS to your LWC's CSS file or use inline style in the template */
+.helper-text {
+  font-size: 12px;
+  color: rgb(255, 0, 0);
+  margin-top: 5px;
+}
